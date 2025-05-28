@@ -69,7 +69,7 @@ class IngestionFactory:
                     self.mapping,
                 )
             case BaseIngestion.SupportedIngestionSources.OPENSEARCH:
-                return OpensearchIngestion(self.ingestion_config)
+                return OpensearchIngestion(self.ingestion_config, self.mapping)
             case BaseIngestion.SupportedIngestionSources.SPLUNK:
                 return SplunkIngestion(
                     self.ingestion_config,
