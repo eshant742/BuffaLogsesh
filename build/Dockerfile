@@ -16,7 +16,12 @@ RUN pip install --no-cache-dir -r requirements.txt \
 
 
 COPY buffalogs/ /opt/certego/buffalogs/
-RUN chmod +x /opt/certego/buffalogs/run.sh; chmod +x /opt/certego/buffalogs/run_worker.sh; chmod +x /opt/certego/buffalogs/run_beat.sh;
+RUN sed -i 's/\r$//' /opt/certego/buffalogs/run.sh && \
+    sed -i 's/\r$//' /opt/certego/buffalogs/run_worker.sh && \
+    sed -i 's/\r$//' /opt/certego/buffalogs/run_beat.sh && \
+    chmod +x /opt/certego/buffalogs/run.sh && \
+    chmod +x /opt/certego/buffalogs/run_worker.sh && \
+    chmod +x /opt/certego/buffalogs/run_beat.sh
 WORKDIR /opt/certego/buffalogs/
 
 CMD [ "./run.sh" ]
